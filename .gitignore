@@ -4,3 +4,4 @@
 .Trashes
 node_modules
 npm-debug.log
+.history
