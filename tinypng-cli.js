@@ -7,10 +7,11 @@ var glob = require("glob");
 var uniq = require("array-uniq");
 var chalk = require("chalk");
 var pretty = require("prettysize");
-var Agent = require("socks5-https-client/lib/Agent");
+// var Agent = require("socks5-https-client/lib/Agent");
 
 var argv = require("minimist")(process.argv.slice(2));
 var home = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE;
+
 var version = require("./package.json").version;
 
 if (argv.v || argv.version) {
@@ -50,6 +51,8 @@ if (argv.v || argv.version) {
         : "";
   } else if (fs.existsSync(home + "/.tinypng")) {
     key = fs.readFileSync(home + "/.tinypng", "utf8").trim();
+  } else {
+    key = `${process.env.npm_config_key}`;
   }
 
   if (argv.width) {
@@ -131,8 +134,8 @@ if (argv.v || argv.version) {
                 user: "api",
                 pass: key
               },
-              strictSSL: true,
-              agentClass: Agent
+              strictSSL: true
+              // agentClass: Agent
             },
             function(error, response, body) {
               try {
