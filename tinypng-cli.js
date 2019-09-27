@@ -52,7 +52,8 @@ if (argv.v || argv.version) {
   } else if (fs.existsSync(home + "/.tinypng")) {
     key = fs.readFileSync(home + "/.tinypng", "utf8").trim();
   } else {
-    key = `${process.env.npm_config_key}`;
+    // 此key可在tinypng网站上自行申请
+    key = "tXRvsrDGyL319DmNRzZJ32zpMtRqpGsH";
   }
 
   if (argv.width) {
